@@ -17,7 +17,9 @@ app.use("/shop", shopRoutes);
 
 mongoose
   .connect(
-    "mongodb+srv://lfauvet1:" +
+    "mongodb+srv://" +
+      process.env.DB_USER +
+      ":" +
       process.env.DB_PASSWORD +
       "@cluster0.8bik77r.mongodb.net/?retryWrites=true&w=majority"
   )
