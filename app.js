@@ -1,28 +1,24 @@
-const express = require("express");
+import express, { json } from "express";
+import { connect } from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
+
 const app = express();
-const mongoose = require("mongoose");
-require("dotenv").config();
 
-// Middleware parse les requêtes, évite de passer par buffer (voir demo.js)
-app.use(express.json());
+app.use(json());
 
-const adminRoutes = require("./routes/admin");
-const shopRoutes = require("./routes/shop");
-const userRoutes = require("./routes/users");
+import dishRoutes from "./routes/dish.js";
 
-// Pour accéder aux routes admin préfixer par admin
-app.use("/admin", adminRoutes);
-app.use("/users", userRoutes);
-app.use("/shop", shopRoutes);
+app.use("/dishes", dishRoutes);
 
-mongoose
-  .connect(
-    "mongodb+srv://" +
-      process.env.DB_USER +
-      ":" +
-      process.env.DB_PASSWORD +
-      "@cluster0.8bik77r.mongodb.net/?retryWrites=true&w=majority"
-  )
+connect(
+  "mongodb+srv://" +
+    process.env.DB_USER +
+    ":" +
+    process.env.DB_PASSWORD +
+    "@cluster0.8bik77r.mongodb.net/?retryWrites=true&w=majority"
+)
   .then(() => {
     console.log("app is successfully connected");
     app.listen(process.env.DB_PORT, () => {
