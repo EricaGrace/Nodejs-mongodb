@@ -9,8 +9,10 @@ const app = express();
 app.use(json());
 
 import dishRoutes from "./routes/dish.js";
+import restaurantRoutes from "./routes/restaurant.js";
 
 app.use("/dishes", dishRoutes);
+app.use("/restaurants", restaurantRoutes);
 
 connect(
   "mongodb+srv://" +
