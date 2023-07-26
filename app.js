@@ -10,9 +10,11 @@ app.use(json());
 
 import dishRoutes from "./routes/dish.js";
 import restaurantRoutes from "./routes/restaurant.js";
+import saleRoutes from "./routes/sale.js";
 
-app.use("/dishes", dishRoutes);
-app.use("/restaurants", restaurantRoutes);
+app.use("/api/dishes", dishRoutes);
+app.use("/api/restaurants", restaurantRoutes);
+app.use("/api/sales", saleRoutes);
 
 connect(
   "mongodb+srv://" +
