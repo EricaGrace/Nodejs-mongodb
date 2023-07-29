@@ -12,12 +12,14 @@ app.use(json());
 import dishRoutes from "./routes/dish.js";
 import restaurantRoutes from "./routes/restaurant.js";
 import saleRoutes from "./routes/sale.js";
+import bookingsRoutes from "./routes/bookings.js";
 import userRoutes from "./routes/user.js";
 import authRoutes from "./routes/auth.js";
 
 app.use("/api/dishes", dishRoutes);
 app.use("/api/restaurants", restaurantRoutes);
 app.use("/api/sales", auth, saleRoutes);
+app.use("/api/bookings", bookingsRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 
