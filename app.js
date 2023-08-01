@@ -2,6 +2,7 @@ import express, { json } from "express";
 import { connect } from "mongoose";
 import dotenv from "dotenv";
 import auth from "./middlewares/auth.js";
+import logger from "./logger.js";
 
 dotenv.config();
 
@@ -25,9 +26,9 @@ app.use("/api/auth", authRoutes);
 
 connect(process.env.DB_URI)
   .then(() => {
-    console.log("app is successfully connected");
+    logger.log("app is successfully connected");
     app.listen(process.env.DB_PORT, () => {
-      console.log("server listening on port " + process.env.DB_PORT);
+      logger.log("server listening on port " + process.env.DB_PORT);
     });
   })
-  .catch((err) => console.log(err));
+  .catch((err) => logger.log(err));
